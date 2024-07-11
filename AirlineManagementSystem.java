@@ -54,7 +54,18 @@ interface airline {
 }
 
 
+ class InternationalFlight extends Flight {
+    public InternationalFlight(String flightNumber, String departure, String destination) {
+        super(flightNumber, departure, destination);
+    }
+
  
+    public void updateFlightStatus() {
+        Flight flight = this;
+        flight.updateFlightStatus();
+        System.out.println("International flight " + flightNumber + " status updated.");
+    }
+}
 
  class AirlineManagementSystem {
     private Flight[] flights;
@@ -97,7 +108,11 @@ interface airline {
         }
     }
 
-    
+    public void listFlights() {
+        for (int i = 0; i < flightCount; i++) {
+            System.out.println("Flight Number: " + flights[i].flightNumber + ", Status: " + flights[i].getStatus());
+        }
+    }
 
     public static void main(String[] args) {
         AirlineManagementSystem ams = new AirlineManagementSystem(10); // Capacity of 10 flights
